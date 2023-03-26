@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
         ?>
 
         <div class="container d-flex justify-content-center">
-            <form action="" method="post" style="witdth:50vwl=; min-width:300px;">
+            <form action="" method="post" style="width:50vwl; min-width:300px;">
                 <div hidden>
                     <input type="text" class="form-control" name="id" value="<?php echo $row['id']?>">
                 </div>    
