@@ -1,81 +1,3 @@
-<?php
-require "db.conn.php";
-
-if(isset($_POST['submit'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $contact_number = $_POST['contact_number'];
-    $gender = $_POST['gender'];
-    $department = $_POST['department'];
-    $position = $_POST['position'];
-
-    $sql = "INSERT INTO `crud`(`id`,`first_name`, `last_name`, `email`, `contact_number`, `gender`,`department`,`position`) VALUES (NULL,'$first_name','$last_name','$email','$contact_number','$gender', '$department', '$position')";
-
-    $result = mysqli_query($conn, $sql);
-
-    if($result){
-        header("Location: index.php?msg=New user created succesfully.");
-    }
-    else {
-        echo "Failed: " . mysqli_error($conn);
-    }
-}
-?>
-
-<?php
-    $first_nameErr = $last_nameErr = $emailErr = $contact_numberErr = "";
-    $first_name = $last_name = $email = $contact_number = "";
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if(isset($_POST['submit'])) {
-
-  if (empty($_POST["first_name"])) {
-    $first_nameErr = "First Name is required!";
-  } 
-  else {
-    $first_name = input_data($_POST["first_name"]);
-    if(!prega_match("/^[a-zA-Z ]*$/",$first_name)){
-        $first_nameErr = "Only alphabets is allowed.";
-    }
-  }
-  
-  if (empty($_POST["last_name"])) {
-    $last_nameErr = "Last Name is required!";
-  } 
-  else {
-    $$last_name = input_data($_POST["last_name"]);
-    if(!prega_match("/^[a-zA-Z ]*$/",$first_name)){
-      $first_nameErr = "Only alphabets is allowed.";
-  }
-}
-  if (empty($_POST["email"])) {
-    $emailErr = "Valid Email is required!";
-  } 
-  else {
-    $email = input_data($_POST["email"]);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format.";
-  }
-}
-
-  if (empty($_POST["contact_number"])) {
-    $contact_numberErr = "Valid Contact Number is required!";
-  } 
-  else {
-    $contact_number = input_data($_POST["contact_number"]);
-  }
-}
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,20 +15,9 @@ function test_input($data) {
 </head>
 <body>
 
-<!DOCTYPE HTML>  
-<html>
-<head>
-<style>
-.error {color: #FF0000;}
-</style>
-</head>
-<body>  
-
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style= "background-color: #77C3EC;">
           Simple  PHP CRUD
     </nav>
-
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> </form>
 
     <div class="container">
         <div class="text-center mb-4">
@@ -115,18 +26,16 @@ function test_input($data) {
         </div>
 
         <div class="container d-flex justify-content-center">
-            <form action="" method="post" auto_complete="off" style="witdth:50vwl=; min-width:300px;">
+            <form action="../functions/newuser.php" method="post" auto_complete="off" style="width:50vwl; min-width:300px;">
                  <div class="row mb-2">
                       <div class="col">
                         <label class="form.label">First Name:</label>
                         <input type="text" class="form-control" name="first_name" placeholder="Aphrdoite">
-                        <span class="error"><?php echo $first_nameErr;?></span>
                        </div>
 
                       <div class="col">
                         <label class="form.label">Last Name:</label>
                         <input type="text" class="form-control" name="last_name" placeholder="Goddess">
-                        <span class="error"><?php echo $last_nameErr;?></span>
                       </div>
                  </div>
 
@@ -161,18 +70,16 @@ function test_input($data) {
                  <div class="mb-2">
                  <label class="form.label">Email:</label>
                  <input type="text" class="form-control" name="email" placeholder="aprhodite@gmail.com">
-                 <span class="error"><?php echo $emailErr;?></span>
                  </div>
 
                  <div class="mb-2">
                  <label class="form.label">Contact Number:</label>
                  <input type="text" class="form-control" name="contact_number" placeholder="09123456789">
-                 <span class="error"><?php echo $contact_numberErr;?></span>
                  </div>
 
                  <div>
                     <button type="submit" class="btn btn-success" name="submit">Submit</button>
-                    <a href="index.php" class="btn btn-danger">Cancel</a>
+                    <a href="../index.php" class="btn btn-danger">Cancel</a>
                 </div>
 
              </form>
@@ -181,10 +88,6 @@ function test_input($data) {
 <!-- Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-<!-- This is for jquery post function -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="script.js"></script>
 
 </body>
 </html>
