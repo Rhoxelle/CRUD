@@ -1,12 +1,19 @@
 <?php
-require "db.config.php";
-$id = $_GET['id'];
-$sql = "DELETE  FROM `crud` WHERE id = $id";
-$result = mysqli_query($conn, $sql);
-if($result){
-    header("Location: index.php?msg=User deleted successfully.");
-}
-else {
-    echo "Failed: " . mysqli_error($conn);
-}
+require "functions.php";
+
+$id = $_REQUEST['deleteUser'];
+
+$query = new DatabaseQueryUser(
+    Connection::make($dbcred['database'])
+);
+
+
+$query = new DatabaseQueryUser(
+    Connection::make($dbcred['database'])
+);
+
+$query->deleteUser('crud','$id');
+
+header('location: ../index.php?msg=User successfully deleted.');
+
 ?>

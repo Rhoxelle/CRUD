@@ -1,30 +1,3 @@
-<?php
-require "db.config.php";
-
-if(isset($_POST['submit'])) {
-    $id = $_POST['id'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $contact_number = $_POST['contact_number'];
-    $gender = $_POST['gender'];
-    $marital_status = $_POST['marital_status'];
-    $department = $_POST['department'];
-    $position = $_POST['position'];
-
-    $sql = "UPDATE `crud` SET `first_name`='$first_name',`last_name`='$last_name',`email`='$email',`contact_number`='$contact_number',`gender`='$gender',`marital_status`='$marital_status',`department`='$department',`position`='$position' WHERE id={$id}";
-
-    $result = mysqli_query($conn, $sql);
-    
-    if($result) {
-        header('Location: index.php?msg=Updated user information successfully.');
-    }
-    else {
-        echo "Failed: " . mysqli_error($conn);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,17 +24,8 @@ if(isset($_POST['submit'])) {
              <p class="text-muted">Click udate after changing any information.</p>
         </div>
 
-        <?php
-          require "db.conn.php";
-
-        $id = $_GET['id'];
-        $sql = "SELECT * FROM `crud` WHERE id = $id LIMIT 10";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_assoc($result);
-        ?>
-
         <div class="container d-flex justify-content-center">
-            <form action="" method="post" style="width:50vwl; min-width:300px;">
+            <form action="../functions/edit.php" method="post" style="width:50vwl; min-width:300px;">
                 <div hidden>
                     <input type="text" class="form-control" name="id" value="<?php echo $row['id']?>">
                 </div>    
