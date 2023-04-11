@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2023 at 07:28 AM
+-- Generation Time: Apr 09, 2023 at 10:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -24,38 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `crud`
+-- Table structure for table `department`
 --
 
-CREATE TABLE `crud` (
+CREATE TABLE `department` (
   `id` int(100) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `contact_number` bigint(11) NOT NULL,
-  `gender` varchar(100) NOT NULL,
-  `marital_status` varchar(100) NOT NULL,
-  `department` varchar(1000) NOT NULL,
-  `position` varchar(1000) NOT NULL
+  `department` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `crud`
---
-
-INSERT INTO `crud` (`id`, `first_name`, `last_name`, `email`, `contact_number`, `gender`, `marital_status`, `department`, `position`) VALUES
-(62, 'Test', 'User', 'testaccount@yahoo.com', 9124689710, 'Female', 'Single', 'IT Desk', ''),
-(63, '', '', '', 0, '', '', '', ''),
-(64, '', '', '', 0, '', '', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `crud`
+-- Indexes for table `department`
 --
-ALTER TABLE `crud`
+ALTER TABLE `department`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -63,10 +47,10 @@ ALTER TABLE `crud`
 --
 
 --
--- AUTO_INCREMENT for table `crud`
+-- AUTO_INCREMENT for table `department`
 --
-ALTER TABLE `crud`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+ALTER TABLE `department`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
